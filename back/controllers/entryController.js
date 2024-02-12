@@ -9,6 +9,18 @@ exports.getData = async (req, res) => {
   }
 };
 
+exports.getById = async (req, res) => {
+  try {
+    const entry = await Entry.findById(req.params.id);
+
+    if (!entry) return res.status(404).json({ success: false });
+
+    res.status(200).json({ success: true, data: entry });
+  } catch (err) {
+    res.status(400).json({ success: false, error: err.message });
+  }
+};
+
 exports.postData = async (req, res) => {
   try {
     console.log('Request body:', req.body);
