@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchEntries, ApiResponse } from '../services/api';
 import Entry from '../components/TrainingLog/Entry';
-import { Box, ThemeProvider, Typography } from '@mui/material';
+import { Box, Button, Link, ThemeProvider, Typography } from '@mui/material';
 import theme from '../themes/theme';
 import '../themes/fonts.scss';
 
@@ -30,7 +30,7 @@ const Home = () => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          height: '100vh',
+          minHeight: '100vh',
         }}
       >
         <Typography
@@ -46,6 +46,19 @@ const Home = () => {
         >
           Sit Pretty
         </Typography>
+        <Button
+          href="/add"
+          variant="contained"
+          sx={{
+            fontFamily: 'Chakra Petch, Arial, sans-serif',
+            fontSize: 18,
+            color: '#063970',
+            backgroundColor: '#76aaea',
+            width: 150,
+          }}
+        >
+          Skapa
+        </Button>
         <Box
           sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}
         >

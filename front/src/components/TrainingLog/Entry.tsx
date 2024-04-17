@@ -1,7 +1,6 @@
 import { Typography } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import './Entry.module.scss';
 
 interface Props {
   date: string;
@@ -13,7 +12,7 @@ interface Props {
 
 const Entry = ({ date, location, description, rating, reflection }: Props) => {
   return (
-    <Card sx={{ backgroundColor: '#063970', maxWidth: 500, height: 300 }}>
+    <Card sx={{ backgroundColor: '#063970', maxWidth: 500, minHeight: 270 }}>
       <CardContent>
         <Typography sx={{ fontWeight: 'bold', color: '#cdd7e2' }} variant="h5">
           {date}
