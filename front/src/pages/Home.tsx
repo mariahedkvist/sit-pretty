@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { fetchEntries, ApiResponse } from '../services/api';
 import Entry from '../components/TrainingLog/Entry';
-import { Typography } from '@mui/material';
+import { Box, ThemeProvider, Typography } from '@mui/material';
+import theme from '../themes/theme';
+import '../themes/fonts.scss';
 
 const Home = () => {
   const [entries, setEntries] = useState<ApiResponse[]>([]);
@@ -21,16 +23,46 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <Typography variant={'h1'} sx={{ fontSize: 30 }}>
-        Doris träningsdagbok
-      </Typography>
-      <ul>
-        {entries.map((entry) => (
-          <Entry date={entry.date} location={entry.location} />
-        ))}
-      </ul>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{
+          backgroundColor: '#eab676',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
+        <Typography
+          p={5}
+          variant={'h1'}
+          sx={{
+            fontFamily: 'Chakra Petch, Arial, sans-serif',
+            fontSize: 40,
+            color: '#063970',
+            fontWeight: 'bold',
+            textAlign: 'center',
+          }}
+        >
+          Doris träningsdagbok
+        </Typography>
+        <Box
+          sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}
+        >
+          {entries.map((entry) => (
+            <Box m={3}>
+              <Entry
+                date={entry.date.substring(0, 10)}
+                location={entry.location}
+                description={entry.description}
+                rating={entry.rating}
+                reflection={entry.reflection}
+              />
+            </Box>
+          ))}
+        </Box>
+      </Box>
+    </ThemeProvider>
   );
 };
 

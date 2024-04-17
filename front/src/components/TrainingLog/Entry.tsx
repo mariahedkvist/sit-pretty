@@ -1,18 +1,32 @@
 import { Typography } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import './Entry.module.scss';
 
 interface Props {
   date: string;
   location: string;
+  description: string;
+  rating?: number;
+  reflection?: string;
 }
 
-const Entry = ({ date, location }: Props) => {
+const Entry = ({ date, location, description, rating, reflection }: Props) => {
   return (
-    <Card>
+    <Card sx={{ backgroundColor: '#063970', maxWidth: 500, height: 300 }}>
       <CardContent>
-        <Typography sx={{ fotnSize: 14 }}>{date}</Typography>
-        <Typography sx={{ fontSize: 12 }}>{location}</Typography>
+        <Typography sx={{ fontWeight: 'bold', color: '#cdd7e2' }} variant="h5">
+          {date}
+        </Typography>
+        <Typography variant="h6" sx={{ color: '#cdd7e2' }}>
+          Plats: {location} <br />
+          Tränat: {description}
+          <br />
+          Betyg: {rating ? `${rating} / 5` : 'Inte betygsatt'}
+        </Typography>
+        <Typography variant="body1" sx={{ color: '#cdd7e2' }}>
+          Reflektion: {reflection}
+        </Typography>
       </CardContent>
     </Card>
   );
