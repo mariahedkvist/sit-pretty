@@ -4,24 +4,9 @@ import Entry from '../components/TrainingLog/Entry';
 import { Box, Button, Link, ThemeProvider, Typography } from '@mui/material';
 import theme from '../themes/theme';
 import '../themes/fonts.scss';
+import Entries from '../components/TrainingLog/Entries';
 
 const Home = () => {
-  const [entries, setEntries] = useState<ApiResponse[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data: ApiResponse[] = await fetchEntries();
-        console.log(data);
-        setEntries(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -59,28 +44,7 @@ const Home = () => {
         >
           Skapa
         </Button>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            alignItems: 'stretch',
-            flexWrap: 'wrap',
-            maxWidth: 700,
-          }}
-        >
-          {entries.map((entry) => (
-            <Box m={3}>
-              <Entry
-                date={entry.date.substring(0, 10)}
-                location={entry.location}
-                description={entry.description}
-                rating={entry.rating}
-                reflection={entry.reflection}
-              />
-            </Box>
-          ))}
-        </Box>
+        <Entries />
       </Box>
     </ThemeProvider>
   );

@@ -15,7 +15,6 @@ const Entry = ({ date, location, description, rating, reflection }: Props) => {
     <Card
       sx={{
         backgroundColor: '#063970',
-        // width: '100%',
         minHeight: 270,
       }}
     >
