@@ -26,7 +26,7 @@ const Home = () => {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          backgroundColor: '#eab676',
+          backgroundColor: 'background.default',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -60,7 +60,14 @@ const Home = () => {
           Skapa
         </Button>
         <Box
-          sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: 'stretch',
+            flexWrap: 'wrap',
+            maxWidth: 700,
+          }}
         >
           {entries.map((entry) => (
             <Box m={3}>

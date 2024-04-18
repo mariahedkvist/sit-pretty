@@ -12,7 +12,13 @@ interface Props {
 
 const Entry = ({ date, location, description, rating, reflection }: Props) => {
   return (
-    <Card sx={{ backgroundColor: '#063970', maxWidth: 500, minHeight: 270 }}>
+    <Card
+      sx={{
+        backgroundColor: '#063970',
+        // width: '100%',
+        minHeight: 270,
+      }}
+    >
       <CardContent>
         <Typography sx={{ fontWeight: 'bold', color: '#cdd7e2' }} variant="h5">
           {date}

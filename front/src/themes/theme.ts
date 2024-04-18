@@ -5,6 +5,11 @@ const theme = createTheme({
   typography: {
     fontFamily: ['Montserrat, Arial, sans-serif'].join(''),
   },
+  palette: {
+    background: {
+      default: '#eab676',
+    },
+  },
   components: {
     MuiCssBaseline: {
       styleOverrides: `
@@ -12,7 +17,8 @@ const theme = createTheme({
         font-family: 'Montserrat';
         font-style: normal;
         font-display: swap;
-        font-weight: 400;`,
+        font-weight: 400;
+        `,
     },
   },
 });
