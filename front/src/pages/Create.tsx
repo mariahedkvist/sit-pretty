@@ -6,14 +6,15 @@ import {
   Typography,
 } from '@mui/material';
 import theme from '../themes/theme';
-import { useFormik } from 'formik';
+import { Formik, useFormik } from 'formik';
 import * as yup from 'yup';
 import { DatePicker } from '@mui/x-date-pickers';
+import { postEntries } from '../services/api';
 
 const validationSchema = yup.object({
   location: yup.string().required('Location is required'),
   description: yup.string().required('Description is required'),
-  rating: yup.number(),
+  rating: yup.number().typeError('Must be a number'),
   reflection: yup.string(),
 });
 
@@ -22,11 +23,19 @@ const Create = () => {
     initialValues: {
       location: '',
       description: '',
-      rating: null,
+      rating: 0,
       reflection: '',
       date: '',
     },
-    onSubmit: (values) => {
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      try {
+        const response = await postEntries(values);
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+        throw err;
+      }
       alert(JSON.stringify(values, null, 2));
     },
   });
@@ -64,7 +73,13 @@ const Create = () => {
               width: 500,
             }}
           >
-            <DatePicker sx={{ width: '100%' }} />
+            <DatePicker
+              disableFuture
+              sx={{ m: 2, width: '100%' }}
+              name="date"
+              label="Date"
+              onChange={(value) => formik.setFieldValue('date', value, true)}
+            />
             <TextField
               sx={{ m: 2, width: '100%' }}
               id="location"

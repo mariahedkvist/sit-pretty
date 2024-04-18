@@ -25,4 +25,17 @@ export const fetchEntries = async (): Promise<ApiResponse[]> => {
   }
 };
 
+export const postEntries = async (data: object): Promise<ApiResponse[]> => {
+  try {
+    const response: ApiResponse[] = await instance.post(
+      '/',
+      JSON.stringify(data)
+    );
+    return response;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
 // TODO: getbyid, post, put, delete
